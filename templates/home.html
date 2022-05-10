@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<style>
+    body {
+  background-color: rgb(197, 240, 231);
+    }
+    h1 {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: black;
+  margin-left: 40px;
+  text-align: center;
+}
+    article {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 1000px;
+    border: 15px solid rgb(0, 128, 117);
+    padding: 50px;
+    margin: 20px;
+    }
+    img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 800px;
+
+    }
+
+</style>
+<h1>Magurno Blog</h1> 
+   <section>
+        {% for articulo in articulos %}
+            <article>
+                <h3>{{ articulo.nombre }}</h3>
+                <p> {{ articulo.contenido }}</p>
+                <img src="{{ articulo.imagen }}" >
+                <footer>Autor: {{ articulo.autor }}</footer>
+                <td><a href="{% url 'modificar' articulo.id  %} ">modificar</a></td>
+            </article>
+        {% endfor %}
+   </section>
+{% if user.is_authenticated %}
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}

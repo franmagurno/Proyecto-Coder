@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+    <table>
+        {% csrf_token %}
+        {{ form.as_table }} 
+    </table>
+    
+    <input type="reset" value="limpiar">
+    <input type="submit" value="modificar">
+
+</form>
+
+
+{% endblock %}
